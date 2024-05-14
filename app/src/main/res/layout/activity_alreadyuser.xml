@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="#FCFCFC"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".alreadyuser">
+
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif"
+        android:text="Login in"
+        android:textColor="#000000"
+        android:textSize="40sp"
+        android:textStyle="bold" />
+
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/emailId"
+        android:layout_width="273dp"
+        android:layout_height="44dp"
+        android:ems="10"
+        android:layout_marginBottom="30dp"
+        android:hint="Email"
+        android:textColorHint="@color/black"
+        android:inputType="textEmailAddress"
+        />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/Password"
+        android:layout_width="273dp"
+        android:layout_height="44dp"
+        android:ems="10"
+        android:layout_marginBottom="40dp"
+        android:hint="Password"
+        android:textColorHint="@color/black"
+        android:inputType="textPassword"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/getStartedButton"
+        android:layout_width="300dp"
+        android:layout_height="66dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="15dp"
+
+        android:background="@drawable/btn2"
+        android:text="LOG IN"
+        android:textColor="@color/white"
+        android:textSize="21sp" />
+
+</LinearLayout>
