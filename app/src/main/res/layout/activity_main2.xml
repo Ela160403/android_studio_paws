@@ -1,35 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FCFCFC"
-
-
+    android:background="#F1F0F5"
+    android:orientation="vertical"
     tools:context=".MainActivity2">
-
 
     <ViewFlipper
         android:id="@+id/viewFlipper"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:autoStart="true"
+        android:background="#6258CB"
         android:flipInterval="2000"
         android:inAnimation="@android:anim/slide_in_left"
-        android:outAnimation="@android:anim/slide_out_right"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.5">
+        android:outAnimation="@android:anim/slide_out_right">
 
         <ImageView
             android:id="@+id/imageView5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="206dp"
             app:srcCompat="@drawable/b1" />
 
         <ImageView
@@ -43,47 +35,63 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:srcCompat="@drawable/b3" />
-
-
     </ViewFlipper>
 
-    <Button
-        android:id="@+id/btnGoto"
-        android:layout_width="169dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="587dp"
-        android:backgroundTint="#6258CB"
-        android:text="Get Started"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="412dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="#6258CB"
+        app:srcCompat="@drawable/arc_1" />
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="176dp"
-        android:layout_height="21dp"
-        android:fontFamily="sans-serif-smallcaps"
-        android:text="schedule Your pets"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.28" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/bungee"
+        android:text="Welcome To P a w s"
+        android:textColor="@color/viol2"
+        android:textSize="23dp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="1dp"
+        android:fontFamily="@font/londrina_solid"
+        android:text="Paws is your ultimate companion"
+        android:textColor="#808080" />
+
+    <ImageButton
+        android:id="@+id/btnGoto"
+        android:layout_width="wrap_content"
+        android:layout_height="155dp"
+        android:layout_gravity="center"
+
+        android:layout_marginTop="10dp"
+        android:src="@drawable/pawsr" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_height="25dp"
+        android:layout_gravity="center"
+        android:fontFamily="monospace"
+        android:text="To Get Started click the P a w s" />
 
     <TextView
         android:id="@+id/signin"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="25dp"
+        android:layout_gravity="center"
+        android:fontFamily="cursive"
         android:text="Already have petcare account? Sign in"
         android:textColor="#6258CB"
         android:textSize="14sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/viewFlipper"
-        app:layout_constraintStart_toStartOf="@+id/viewFlipper"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.929" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:textStyle="bold" />
+
+</LinearLayout>

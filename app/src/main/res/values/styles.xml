@@ -1,0 +1,8 @@
+<resources>
+    <!-- Base application theme -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here -->
+        <item name="android:statusBarColor">@color/viol</item>
+        <item name="android:windowLightStatusBar">true</item> <!-- For light status bar icons -->
+    </style>
+</resources>
