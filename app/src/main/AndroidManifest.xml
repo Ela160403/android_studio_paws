@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" >
+    xmlns:tools="http://schemas.android.com/tools">
 
     <application
         android:allowBackup="true"
@@ -11,12 +11,29 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Paws"
-        tools:targetApi="31" >
-        >
-
+        android:usesCleartextTraffic="true"
+        tools:targetApi="31">
+        <activity
+            android:name=".app_bar_main"
+            android:exported="false" />
+        <activity
+            android:name=".Mainslide"
+            android:exported="false" />
+        <activity
+            android:name=".FeaturedPetsAdapter"
+            android:exported="false" />
+        <activity
+            android:name=".item_health_tip"
+            android:exported="false" />
+        <activity
+            android:name=".item_service"
+            android:exported="false" />
+        <activity
+            android:name=".item_featured_pet"
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -35,6 +52,10 @@
         <activity
             android:name=".Homepag"
             android:exported="true" />
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>
