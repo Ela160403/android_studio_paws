@@ -10,6 +10,8 @@ import androidx.appcompat.widget.AppCompatButton;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
@@ -63,19 +65,32 @@ public class MainActivity3 extends AppCompatActivity {
 
         auth.createUserWithEmailAndPassword(emailTxt, passwordTxt).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
-                Map<String, Object> user = new HashMap<>();
-                user.put("name", nameTxt);
-                user.put("age", ageTxt);
-                user.put("gender", genderTxt);
-                db.collection("users").document(auth.getCurrentUser().getUid())
-                        .set(user)
-                        .addOnSuccessListener(aVoid -> {
-                            Toast.makeText(MainActivity3.this, "User registered successfully", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(MainActivity3.this, alreadyuser.class);
-                            startActivity(intent);
-                            finish();
-                        })
-                        .addOnFailureListener(e -> Toast.makeText(MainActivity3.this, "Registration failed", Toast.LENGTH_SHORT).show());
+                FirebaseUser firebaseUser = auth.getCurrentUser();
+                if (firebaseUser != null) {
+                    UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                            .setDisplayName(nameTxt)
+                            .build();
+
+                    firebaseUser.updateProfile(profileUpdates).addOnCompleteListener(profileTask -> {
+                        if (profileTask.isSuccessful()) {
+                            Map<String, Object> user = new HashMap<>();
+                            user.put("name", nameTxt);
+                            user.put("age", ageTxt);
+                            user.put("gender", genderTxt);
+                            db.collection("users").document(firebaseUser.getUid())
+                                    .set(user)
+                                    .addOnSuccessListener(aVoid -> {
+                                        Toast.makeText(MainActivity3.this, "User registered successfully", Toast.LENGTH_SHORT).show();
+                                        Intent intent = new Intent(MainActivity3.this, alreadyuser.class);
+                                        startActivity(intent);
+                                        finish();
+                                    })
+                                    .addOnFailureListener(e -> Toast.makeText(MainActivity3.this, "Registration failed", Toast.LENGTH_SHORT).show());
+                        } else {
+                            Toast.makeText(MainActivity3.this, "Failed to update profile", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
             } else {
                 Toast.makeText(MainActivity3.this, "Registration failed", Toast.LENGTH_SHORT).show();
             }

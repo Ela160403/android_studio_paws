@@ -41,6 +41,9 @@ android {
 }
 
 dependencies {
+    implementation("com.sun.mail:android-mail:1.6.4")
+    implementation("com.sun.mail:android-activation:1.6.4")
+    implementation("com.squareup.picasso:picasso:2.71828")
 
     implementation(libs.appcompat)
     implementation(libs.material)
@@ -52,6 +55,9 @@ dependencies {
     implementation(libs.play.services.maps)
     implementation(libs.play.services.location)
     implementation(libs.navigation.runtime)
+    implementation(libs.gms.play.services.maps)
+    implementation(libs.gms.play.services.location)
+    implementation(libs.places)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)

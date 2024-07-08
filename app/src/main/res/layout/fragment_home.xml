@@ -27,25 +27,55 @@
         <!-- Add Pet Button -->
         <ImageView
             android:id="@+id/addPetImageView"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:layout_gravity="left"
             android:layout_marginTop="32dp"
             android:src="@drawable/addpg"
             android:contentDescription="Add Pet"
             android:clickable="true"
             android:focusable="true" />
-
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="To ADD Your Pet"
+    android:fontFamily="@font/bungee"
+    android:textColor="@color/viol"
+    />
+        <ImageView
+            android:id="@+id/petinfoimage"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="left"
+            android:src="@drawable/petinfo"
+            android:contentDescription="Add Pet"
+            android:clickable="true"
+            android:focusable="true" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="To View Your Pets"
+           android:fontFamily="@font/bungee"
+            android:textColor="@color/viol"/>
         <!-- RecyclerView to Display Pet Names -->
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="match_parent"
+android:fontFamily="@font/bungee"
+            android:textColor="@color/black"
+            android:layout_height="wrap_content"
+            android:text="Pet Names" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/petsRecyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_width="314dp"
+            android:layout_height="363dp"
             android:layout_marginTop="16dp"
+            android:layout_weight="1"
             android:clipToPadding="false"
-            android:paddingBottom="0dp"
-            android:nestedScrollingEnabled="false" />
+            android:nestedScrollingEnabled="false"
+            android:paddingBottom="0dp" />
+
     </LinearLayout>
 
 </FrameLayout>

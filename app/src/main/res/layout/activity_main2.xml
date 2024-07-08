@@ -62,22 +62,24 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="1dp"
+        android:layout_marginBottom="30dp"
         android:fontFamily="@font/londrina_solid"
         android:text="Paws is your ultimate companion"
         android:textColor="#808080" />
 
     <ImageButton
         android:id="@+id/btnGoto"
-        android:layout_width="wrap_content"
-        android:layout_height="155dp"
-        android:layout_gravity="center"
 
+        android:layout_width="148dp"
+        android:layout_height="118dp"
+        android:layout_gravity="center"
         android:layout_marginTop="10dp"
+        android:background="#F1F0F5"
         android:src="@drawable/pawsr" />
 
     <TextView
         android:layout_width="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="30dp"
         android:layout_height="25dp"
         android:layout_gravity="center"
         android:fontFamily="monospace"

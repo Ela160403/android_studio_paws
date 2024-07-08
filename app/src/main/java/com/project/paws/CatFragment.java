@@ -1,14 +1,20 @@
 package com.project.paws;
+
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -20,6 +26,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -28,7 +36,9 @@ public class CatFragment extends Fragment {
     private static final int PICK_IMAGE = 1;
     private static final int TAKE_PHOTO = 2;
     private Uri imageUri;
-    private EditText breedEditText, heightEditText, weightEditText, ageEditText, colorEditText, petNameEditText, vaccinationEditText, dosagesEditText;
+    private ImageView imagePreview;
+    private Spinner breedSpinner, ageSpinner, colorSpinner;
+    private EditText heightEditText, weightEditText, petNameEditText, vaccinationEditText, dosagesEditText;
     private Button choosePhotoButton, takePhotoButton, saveButton;
     private FirebaseFirestore db;
 
@@ -47,11 +57,12 @@ public class CatFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        breedEditText = view.findViewById(R.id.breedEditText);
+        imagePreview = view.findViewById(R.id.imagePreview);
+        breedSpinner = view.findViewById(R.id.breedSpinner);
         heightEditText = view.findViewById(R.id.heightEditText);
         weightEditText = view.findViewById(R.id.weightEditText);
-        ageEditText = view.findViewById(R.id.ageEditText);
-        colorEditText = view.findViewById(R.id.colorEditText);
+        ageSpinner = view.findViewById(R.id.ageSpinner);
+        colorSpinner = view.findViewById(R.id.colorSpinner);
         petNameEditText = view.findViewById(R.id.petNameEditText);
         vaccinationEditText = view.findViewById(R.id.vaccinationEditText);
         dosagesEditText = view.findViewById(R.id.dosagesEditText);
@@ -60,6 +71,19 @@ public class CatFragment extends Fragment {
         saveButton = view.findViewById(R.id.saveButton);
 
         db = FirebaseFirestore.getInstance();
+
+        // Populate Spinners
+        ArrayAdapter<CharSequence> breedAdapter = ArrayAdapter.createFromResource(getContext(), R.array.breed_array, android.R.layout.simple_spinner_item);
+        breedAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        breedSpinner.setAdapter(breedAdapter);
+
+        ArrayAdapter<CharSequence> ageAdapter = ArrayAdapter.createFromResource(getContext(), R.array.aage_array, android.R.layout.simple_spinner_item);
+        ageAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        ageSpinner.setAdapter(ageAdapter);
+
+        ArrayAdapter<CharSequence> colorAdapter = ArrayAdapter.createFromResource(getContext(), R.array.color_array, android.R.layout.simple_spinner_item);
+        colorAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        colorSpinner.setAdapter(colorAdapter);
 
         choosePhotoButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,18 +125,38 @@ public class CatFragment extends Fragment {
         if (resultCode == Activity.RESULT_OK) {
             if (requestCode == PICK_IMAGE) {
                 imageUri = data.getData();
+                if (imageUri != null) {
+                    imagePreview.setImageURI(imageUri);
+                }
             } else if (requestCode == TAKE_PHOTO) {
-                imageUri = data.getData();
+                Bundle extras = data.getExtras();
+                if (extras != null) {
+                    // Retrieve the image captured by the camera
+                    Bitmap photo = (Bitmap) extras.get("data");
+                    // Convert bitmap to URI and set to imageUri
+                    imageUri = getImageUri(getContext(), photo);
+                    if (imageUri != null) {
+                        imagePreview.setImageURI(imageUri);
+                    }
+                }
             }
         }
     }
 
+    // Convert Bitmap to Uri
+    private Uri getImageUri(Context context, Bitmap bitmap) {
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+        String path = MediaStore.Images.Media.insertImage(context.getContentResolver(), bitmap, "Title", null);
+        return Uri.parse(path);
+    }
+
     private void saveCatDetails() {
-        String breed = breedEditText.getText().toString();
+        String breed = breedSpinner.getSelectedItem().toString();
         String height = heightEditText.getText().toString();
         String weight = weightEditText.getText().toString();
-        String age = ageEditText.getText().toString();
-        String color = colorEditText.getText().toString();
+        String age = ageSpinner.getSelectedItem().toString();
+        String color = colorSpinner.getSelectedItem().toString();
         String petName = petNameEditText.getText().toString();
         String vaccination = vaccinationEditText.getText().toString();
         String dosages = dosagesEditText.getText().toString();
@@ -137,10 +181,25 @@ public class CatFragment extends Fragment {
                     public void onComplete(@NonNull Task<DocumentReference> task) {
                         if (task.isSuccessful()) {
                             Toast.makeText(getActivity(), "Cat details saved", Toast.LENGTH_SHORT).show();
+                            clearFields();
                         } else {
                             Toast.makeText(getActivity(), "Error saving cat details", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
+    }
+
+    private void clearFields() {
+        breedSpinner.setSelection(0);
+        heightEditText.setText("");
+        weightEditText.setText("");
+        ageSpinner.setSelection(0);
+        colorSpinner.setSelection(0);
+        petNameEditText.setText("");
+        vaccinationEditText.setText("");
+        dosagesEditText.setText("");
+        // Set your default image here
+        imagePreview.setImageResource(R.drawable.ccat);
+        imageUri = null;
     }
 }

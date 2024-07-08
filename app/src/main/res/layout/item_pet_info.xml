@@ -1,0 +1,29 @@
+<!-- item_pet_info.xml -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    tools:context=".PetInfoFragment"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/text_pet_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        android:layout_marginBottom="8dp"/>
+
+    <!-- Add other TextViews for pet information (e.g., breed, age, etc.) -->
+
+    <Button
+        android:id="@+id/btn_download"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Download Info"
+        android:layout_marginTop="8dp"/>
+
+</LinearLayout>

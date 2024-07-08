@@ -25,7 +25,7 @@ public class AddPetFragment extends Fragment {
 
         catImageView.setOnClickListener(v -> navigateToFragment(new CatFragment()));
         dogImageView.setOnClickListener(v -> navigateToFragment(new DogFragment()));
-        birdImageView.setOnClickListener(v -> navigateToFragment(new RabbitFragment()));
+        birdImageView.setOnClickListener(v -> navigateToFragment(new BirdFragment()));
         rabbitImageView.setOnClickListener(v -> navigateToFragment(new RabbitFragment()));
 
         return view;

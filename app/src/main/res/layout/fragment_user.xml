@@ -7,6 +7,13 @@
     tools:context=".UserFragment"
     android:padding="16dp">
 
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/about"
+        android:layout_marginLeft="0dp"
+        android:id="@+id/about"/>
+
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -15,21 +22,26 @@
         app:cardCornerRadius="16dp"
         app:cardElevation="8dp">
 
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/feedback"
+            android:text="Feedback"/>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
             android:orientation="vertical"
             android:padding="16dp">
 
-            <ImageView
-                android:id="@+id/userPhoto"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:layout_gravity="center"
-                android:scaleType="centerCrop"
-                android:src="@drawable/ic_user"
-                android:padding="16dp" />
+<!--            <ImageView-->
+<!--                android:id="@+id/userPhoto"-->
+<!--                android:layout_width="150dp"-->
+<!--                android:layout_height="150dp"-->
+<!--                android:layout_gravity="center"-->
+<!--                android:scaleType="centerCrop"-->
+<!--                android:src="@drawable/ic_user"-->
+<!--                android:padding="16dp" />-->
 
             <TextView
                 android:id="@+id/userName"
@@ -93,6 +105,14 @@
                     android:background="@color/viol2"
                     android:textColor="@android:color/white"/>
             </LinearLayout>
+
+            <Button
+                android:id="@+id/download"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Download Data"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </FrameLayout>
